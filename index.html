@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Cheat Boxes - Home</title>
+  <style>
+    body {
+      background-color: #0d0d0d;
+      font-family: Arial, sans-serif;
+      color: white;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+    }
+
+    .hero {
+      position: relative;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    #particles {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.8s ease;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .hero-content.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .hero h1,
+    .hero h2 {
+      font-size: 60px;
+      font-weight: 900;
+      margin: 0;
+      text-shadow: 0 0 15px rgba(255, 255, 255, 0.4),
+        0 0 25px rgba(255, 255, 255, 0.2);
+    }
+
+    .hero h2 {
+      color: #5d8eff;
+    }
+
+    /* Contenedor para texto con logos */
+    .footer-info {
+      margin-top: 20px;
+      font-size: 18px;
+      color: #ccc;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      user-select: none;
+    }
+
+    /* Iconos svg estilo */
+    .icon {
+      width: 24px;
+      height: 24px;
+      cursor: pointer;
+      flex-shrink: 0;
+      transition: transform 0.3s ease;
+    }
+    .icon:hover {
+      transform: scale(1.2);
+    }
+
+    /* YouTube rojo */
+    .icon.youtube path {
+      fill: #FF0000;
+    }
+
+    /* Discord azul */
+    .icon.discord path {
+      fill: #5865F2;
+    }
+
+    /* Botones en fila */
+    .btn-row {
+      margin-top: 30px;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .hero .btn {
+      padding: 14px 60px;
+      background: #2b2b2b;
+      border: none;
+      border-radius: 25px;
+      font-size: 18px;
+      cursor: pointer;
+      color: white;
+      transition: transform 0.6s ease, box-shadow 0.3s;
+      opacity: 0;
+      transform: translateY(30px);
+    }
+
+    .hero .btn.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .hero .btn:hover {
+      box-shadow: 0 0 12px rgba(255, 0, 0, 0.4),
+        0 0 24px rgba(0, 255, 0, 0.3),
+        0 0 36px rgba(0, 0, 255, 0.3);
+    }
+
+    /* Icono de perfil */
+    .profile-icon {
+      position: relative;
+      font-size: 28px;
+      color: white;
+      cursor: pointer;
+      opacity: 0;
+      transform: translateY(30px);
+      transition: transform 0.6s ease, opacity 0.6s ease;
+      user-select: none;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: bold;
+    }
+    .profile-icon.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Círculo verde de estado activo */
+    .status-circle {
+      width: 14px;
+      height: 14px;
+      background-color: #00ff00;
+      border-radius: 50%;
+      box-shadow:
+        0 0 5px #00ff00,
+        0 0 10px #00ff00;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0% {
+        transform: scale(0.8);
+        opacity: 0.7;
+      }
+      50% {
+        transform: scale(1.2);
+        opacity: 1;
+      }
+      100% {
+        transform: scale(0.8);
+        opacity: 0.7;
+      }
+    }
+
+    /* Panel desplegable perfil */
+    .profile-popup {
+      position: absolute;
+      top: 40px;
+      right: 0;
+      background: #222;
+      border-radius: 8px;
+      padding: 12px 18px;
+      box-shadow: 0 0 12px rgba(0, 255, 0, 0.6);
+      white-space: nowrap;
+      font-size: 16px;
+      color: #aaffaa;
+      user-select: text;
+      display: none;
+      z-index: 10;
+      min-width: 200px;
+    }
+  </style>
+</head>
+<body>
+  <section class="hero">
+    <canvas id="particles"></canvas>
+    <div class="hero-content" id="hero-content">
+      <h1>Unleash Your Power</h1>
+      <h2>Dominate The Game</h2>
+      <div class="footer-info">
+        <a href="https://www.youtube.com/@StartsKillers" target="_blank" rel="noopener noreferrer" aria-label="YouTube" title="YouTube">
+          <svg class="icon youtube" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" >
+            <path d="M23.498 6.186a2.974 2.974 0 0 0-2.091-2.102C19.465 3.5 12 3.5 12 3.5s-7.466 0-9.408.584a2.974 2.974 0 0 0-2.09 2.102A31.16 31.16 0 0 0 0 12a31.16 31.16 0 0 0 .502 5.814 2.974 2.974 0 0 0 2.09 2.102c1.942.584 9.408.584 9.408.584s7.466 0 9.408-.584a2.974 2.974 0 0 0 2.091-2.102A31.16 31.16 0 0 0 24 12a31.16 31.16 0 0 0-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+          </svg>
+        </a>
+        <span>Website made for and by Sukitonss</span>
+        <a href="https://discord.com/" target="_blank" rel="noopener noreferrer" aria-label="Discord" title="Discord">
+          <svg class="icon discord" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M20.317 4.3698A19.7913 19.7913 0 0 0 16.072 3c-.226.38-.478.874-.65 1.26-1.96-.295-3.907-.295-5.833 0a12.678 12.678 0 0 0-.663-1.26 19.736 19.736 0 0 0-4.314 1.37C3.095 8.023 2.25 11.637 2.25 15.28c0 7.176 5.818 13 13 13 7.176 0 13-5.824 13-13 0-3.69-.89-7.304-2.933-10.909zM8.522 14.835c-1.18 0-2.148-1.07-2.148-2.39 0-1.319.954-2.39 2.148-2.39 1.2 0 2.166 1.07 2.148 2.39 0 1.32-.948 2.39-2.148 2.39zm7.045 0c-1.18 0-2.148-1.07-2.148-2.39 0-1.319.954-2.39 2.148-2.39 1.2 0 2.166 1.07 2.148 2.39 0 1.32-.948 2.39-2.148 2.39z"/>
+          </svg>
+        </a>
+      </div>
+
+      <div class="btn-row">
+        <button class="btn" id="status-btn">Status</button>
+        <a href="https://codepen.io/Alvaro-torres-the-reactor/pen/QwjvQKM" target="_blank" rel="noopener noreferrer">
+          <button class="btn" id="products-btn">Products</button>
+        </a>
+        <div class="profile-icon" id="profile-icon" title="Perfil" aria-haspopup="true" aria-expanded="false" role="button" tabindex="0">
+          👤
+          <div class="status-circle" title="Activo"></div>
+
+          <div class="profile-popup" id="profile-popup" role="region" aria-live="polite" aria-label="Información de perfil">
+            User: Sukitonss<br />
+            Preferencia: Admin<br /> Status: Online<br />
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    // Cambia esta URL a la que quieras que redirija el botón Status
+    const statusRedirectURL = "https://tudireccion.com/status";
+
+    // Sistema simple de verificación (solo una vez por sesión)
+    function showLoginPrompt() {
+      let email = prompt("Introduce tu correo:");
+      let password = prompt("Introduce tu contraseña:");
+      if (email === "SukiSukiton@gmail.com" && password === "D9v#7Lp@qXz2!") {
+        sessionStorage.setItem("loggedIn", "true");
+        alert("Acceso concedido");
+        sendLoginNotification(email);
+        showContent();
+      } else {
+        alert("Credenciales incorrectas. Recarga para intentarlo de nuevo.");
+      }
+    }
+
+    function showContent() {
+      document.getElementById("hero-content").classList.add("visible");
+      document.getElementById("products-btn").classList.add("visible");
+      document.getElementById("status-btn").classList.add("visible");
+      document.getElementById("profile-icon").classList.add("visible");
+    }
+
+    window.addEventListener("load", () => {
+      if (sessionStorage.getItem("loggedIn") === "true") {
+        showContent();
+      } else {
+        showLoginPrompt();
+      }
+    });
+
+    // Enviar notificación de inicio de sesión (requiere backend que acepte esta petición)
+    function sendLoginNotification(email) {
+      fetch("https://tu-backend-para-email.com/api/login-notify", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email: email,
+          message: "Se ha detectado un inicio de sesión en el sitio web.",
+          timestamp: new Date().toISOString(),
+        }),
+      })
+        .then((res) => {
+          if (!res.ok) throw new Error("Error enviando notificación");
+          return res.json();
+        })
+        .then((data) => {
+          console.log("Notificación enviada:", data);
+        })
+        .catch((err) => {
+          console.warn("No se pudo enviar la notificación:", err);
+        });
+    }
+
+    // Partículas de portada
+    const canvas = document.getElementById("particles");
+    const ctx = canvas.getContext("2d");
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    let particles = Array.from({ length: 100 }).map(() => ({
+      x: Math.random() * canvas.width,
+      y: Math.random() * canvas.height,
+      radius: Math.random() * 2,
+      speedX: (Math.random() - 0.5) * 0.5,
+      speedY: (Math.random() - 0.5) * 0.5,
+    }));
+
+    function animateParticles() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      particles.forEach((p) => {
+        p.x += p.speedX;
+        p.y += p.speedY;
+        if (p.x < 0 || p.x > canvas.width) p.speedX *= -1;
+        if (p.y < 0 || p.y > canvas.height) p.speedY *= -1;
+
+        ctx.beginPath();
+        ctx.fillStyle = "rgba(255,255,255,0.6)";
+        ctx.shadowColor = "rgba(255,255,255,0.9)";
+        ctx.shadowBlur = 10;
+        ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+        ctx.fill();
+      });
+      requestAnimationFrame(animateParticles);
+    }
+    animateParticles();
+
+    // Redirigir botón status
+    document.getElementById("status-btn").addEventListener("click", () => {
+      window.location.href = statusRedirectURL;
+    });
+
+    // Mostrar/ocultar panel perfil al hacer clic
+    const profileIcon = document.getElementById("profile-icon");
+    const profilePopup = document.getElementById("profile-popup");
+
+    profileIcon.addEventListener("click", () => {
+      if (profilePopup.style.display === "block") {
+        profilePopup.style.display = "none";
+        profileIcon.setAttribute("aria-expanded", "false");
+      } else {
+        profilePopup.style.display = "block";
+        profileIcon.setAttribute("aria-expanded", "true");
+      }
+    });
+
+    // Para accesibilidad, toggle con tecla Enter o Espacio
+    profileIcon.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        profileIcon.click();
+      }
+    });
+  </script>
+</body>
+</html>
